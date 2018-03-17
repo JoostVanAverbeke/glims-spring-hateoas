@@ -10,7 +10,7 @@ import lombok.Singular;
 
 @Builder
 @Data public class Order {
-	private long id;
+	private Long id;
 	private String internalId;
 	private String shortId;
 	private Calendar receiptTime;

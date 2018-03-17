@@ -5,11 +5,11 @@ import lombok.Data;
 
 @Builder
 @Data public class RequestedCode {
-	private long id;
+	private Long id;
 	private String requestCodeMnemonic;
 	private String identifier;
 	
-	public RequestedCode(long id, String requestCodeMnemonic, String identifier) {
+	public RequestedCode(Long id, String requestCodeMnemonic, String identifier) {
 		super();
 		this.id = id;
 		this.requestCodeMnemonic = requestCodeMnemonic;

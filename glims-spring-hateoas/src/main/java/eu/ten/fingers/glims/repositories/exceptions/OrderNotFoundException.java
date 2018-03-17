@@ -9,7 +9,7 @@ public class OrderNotFoundException extends RuntimeException {
 	private final Long id;
 
 	  public OrderNotFoundException(long id) {
-		super("Person could not be found with id: " + id);
+		super("Order could not be found with id: " + id);
 	    this.id = id;
 	  }
 
