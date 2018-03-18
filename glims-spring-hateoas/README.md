@@ -29,6 +29,38 @@ and goto [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-u
   
 ### Use the MockMvcResultMatchers 
   * [https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/servlet/result/MockMvcResultMatchers.html](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/servlet/result/MockMvcResultMatchers.html) 
-  * [https://github.com/json-path/JsonPath](https://github.com/json-path/JsonPath)  
+  * [https://github.com/json-path/JsonPath](https://github.com/json-path/JsonPath) 
+  
+## Spring Security
+### Authentication
+#### HTTP Basic authentication
+This is the simplest form of authentication in the HTTP speci cation. It relies on a username and password combination being passed as an Authorization header to any HTTP request that mandates authentication.
+When a client issues a request to an endpoint that requires authentication, the server will respond with a HTTP 401 Not Authorized response. The response will include the following header:
+
+`WWW-Authenticate: Basic realm="myRealm"`
+
+This header instructs the client that the user must be authenticated using the Basic scheme. Modern browsers will automatically prompt users for their credentials upon receiving such a response, and re-issue the request with the Authorization header. This header should contain the scheme followed by the username and password combination (in the format, username:password) encoded in Base64. For example, let's consider a request that contains the following header:
+
+`Authorization: Basic cmVzdDpyb2Nrcw==`
+
+Once decoded, the server will need to check for a user with the username, **spring**,
+and password, **rocks**.
+
+##### Using Basic authentication with Spring
+
+Add the following dependencies to your **pom.xml** file:
+
+
+	<dependency>
+	     <groupId>org.springframework.security</groupId>
+	     <artifactId>spring-security-config</artifactId>
+	     <version>4.0.1.RELEASE</version>
+	</dependency>
+	<dependency>
+	     <groupId>org.springframework.security</groupId>
+	     <artifactId>spring-security-web</artifactId>
+	     <version>4.0.1.RELEASE</version>
+	</dependency>
+
 
  

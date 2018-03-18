@@ -17,8 +17,15 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import eu.ten.fingers.glims.resources.Greeting;
 
+/**
+ * We do not want to use security for our unit test!
+ * Disable the spring security by setting <b>secure = false</b> in the @WebMvcTest annotation
+ * 
+ * @author joost
+ *
+ */
 @RunWith(SpringRunner.class)
-@WebMvcTest(GreetingController.class)
+@WebMvcTest(value = GreetingController.class, secure = false)
 public class GreetingControllerTest {
 
 	@Autowired
