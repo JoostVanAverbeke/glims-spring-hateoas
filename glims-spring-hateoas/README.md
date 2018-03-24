@@ -62,5 +62,29 @@ Add the following dependencies to your **pom.xml** file:
 	     <version>4.0.1.RELEASE</version>
 	</dependency>
 
+#### REST Security with JWT (Json Web Token) using Spring Security
+  * [https://www.toptal.com/java/rest-security-with-jwt-spring-security-and-java](https://www.toptal.com/java/rest-security-with-jwt-spring-security-and-java)
+  * [https://octoperf.com/blog/2018/03/08/securing-rest-api-spring-security/](https://octoperf.com/blog/2018/03/08/securing-rest-api-spring-security/)
+  
+##### Testing the Application
+First, let’s login on the REST API:
 
- 
+    $ curl -XPOST -d 'username=john&password=smith' http://localhost:8080/public/users/login 
+    $ b856850e-1ad4-456d-b5ca-1c2bfc355e5 
+
+By sending an url-encoded form post request to the endpoint, it returns as expected a random UUID. Now, let’s use the UUID in a subsequent request to retrieve the current user:
+
+    $ curl -H 'Authorization: Bearer b856850e-1ad4-456d-b5ca-1c2bfc355e5e' http://localhost:8080/users/current
+    $ {"id":"b856850e-1ad4-456d-b5ca-1c2bfc355e5e","username":"john","enabled":true}
+    
+Nice! We’re logged into the system and we could retrieve the current user in Json format. By default, Spring Boot uses Jackson Json API to serialize beans into Json.
+
+Let’s now logout from the system:
+
+    $ curl -H 'Authorization: Bearer b856850e-1ad4-456d-b5ca-1c2bfc355e5e' http://localhost:8080/users/logout
+    $ true
+    
+If we try to get the current user again with the same authentication token, we should receive an error:
+
+    $ curl -H 'Authorization: Bearer b856850e-1ad4-456d-b5ca-1c2bfc355e5e' http://localhost:8080/users/current 
+    $ {"timestamp":1516184750678,"status":401,"error":"Unauthorized","message":"Authentication Failed: Bad credentials","path":"/users/current"}             
