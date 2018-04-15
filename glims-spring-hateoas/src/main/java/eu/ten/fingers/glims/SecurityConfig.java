@@ -20,6 +20,7 @@ import org.springframework.security.web.util.matcher.NegatedRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
+import eu.ten.fingers.glims.security.GlimsRestAuthenticationEntryPoint;
 import eu.ten.fingers.glims.security.NoRedirectStrategy;
 import eu.ten.fingers.glims.security.TokenAuthenticationFilter;
 import eu.ten.fingers.glims.security.TokenAuthenticationProvider;
@@ -60,7 +61,13 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     http.sessionManagement()
 	  .sessionCreationPolicy(STATELESS)
 	  .and()
-	  .exceptionHandling()
+	  /*
+	   * Here we register our proper GlimsRestAuthenticationEntryPoint to arrange our proper
+	   * error handling and http responses when exception are thrown during the authentication
+	   * process.
+	   */
+	  .exceptionHandling().authenticationEntryPoint(new GlimsRestAuthenticationEntryPoint())
+//	  .exceptionHandling()
 	  // this entry point handles when you request a protected page and you are not yet
 	  // authenticated
 	  .defaultAuthenticationEntryPointFor(forbiddenEntryPoint(), PROTECTED_URLS)

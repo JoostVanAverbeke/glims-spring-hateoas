@@ -9,6 +9,7 @@ See youtube movie [https://www.youtube.com/watch?v=5K6NNX-GGDI](https://www.yout
 ## Inspired By
 ### HAL - Hypertext Application Language
   * [http://stateless.co/hal_specification.html](http://stateless.co/hal_specification.html)
+  * [https://tools.ietf.org/html/draft-kelly-json-hal-08](https://tools.ietf.org/html/draft-kelly-json-hal-08)
 
 ### Implementing HAL hypermedia REST API using Spring HATEOAS
   * [https://opencredo.com/hal-hypermedia-api-spring-hateoas/](https://opencredo.com/hal-hypermedia-api-spring-hateoas/)
@@ -29,7 +30,18 @@ and goto [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-u
   
 ### Use the MockMvcResultMatchers 
   * [https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/servlet/result/MockMvcResultMatchers.html](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/servlet/result/MockMvcResultMatchers.html) 
-  * [https://github.com/json-path/JsonPath](https://github.com/json-path/JsonPath) 
+  * [https://github.com/json-path/JsonPath](https://github.com/json-path/JsonPath)
+
+#### Tips and Tricks  
+<b>Very good tip</b>: andDo(print()), is very useful!
+
+
+
+	mockMvc.perform(post("/public/users/login")
+			.param("username", "trump")
+			.param("password", "donald")
+			.contentType(MediaType.APPLICATION_JSON))
+	    	.andDo(print());    	   
   
 ## Spring Security
 ### Authentication
@@ -87,4 +99,15 @@ Let’s now logout from the system:
 If we try to get the current user again with the same authentication token, we should receive an error:
 
     $ curl -H 'Authorization: Bearer b856850e-1ad4-456d-b5ca-1c2bfc355e5e' http://localhost:8080/users/current 
-    $ {"timestamp":1516184750678,"status":401,"error":"Unauthorized","message":"Authentication Failed: Bad credentials","path":"/users/current"}             
+    $ {"timestamp":1516184750678,"status":401,"error":"Unauthorized","message":"Authentication Failed: Bad credentials","path":"/users/current"}
+    
+##### Unit Testing the GET /orders REST Service
+
+See [http://www.springboottutorial.com/unit-testing-for-spring-boot-rest-services](http://www.springboottutorial.com/unit-testing-for-spring-boot-rest-services)
+
+### Test your REST services
+Use app postman
+For more info see [https://www.getpostman.com/](https://www.getpostman.com/)
+
+#### POSTMAN User manual
+See [https://support.brightcove.com/use-postman-api-requests](https://support.brightcove.com/use-postman-api-requests)                 

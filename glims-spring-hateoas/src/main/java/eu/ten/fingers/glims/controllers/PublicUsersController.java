@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import eu.ten.fingers.glims.services.UserAuthenticationService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +38,6 @@ public class PublicUsersController {
 		@RequestParam("password") final String password) {
 		return authentication
 		  .login(username, password)
-		  .orElseThrow(() -> new RuntimeException("invalid login and/or password"));
+		  .orElseThrow(() -> new UsernameNotFoundException("No user found with username " + username));
 	}
 }

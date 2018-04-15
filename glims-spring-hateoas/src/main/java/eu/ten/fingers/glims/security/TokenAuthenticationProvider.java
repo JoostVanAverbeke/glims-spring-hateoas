@@ -19,9 +19,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import eu.ten.fingers.glims.repositories.exceptions.UsernameNotFoundException;
 import eu.ten.fingers.glims.services.UserAuthenticationService;
 
 
@@ -29,16 +29,18 @@ import eu.ten.fingers.glims.services.UserAuthenticationService;
 @AllArgsConstructor(access = PACKAGE)
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 public final class TokenAuthenticationProvider extends
-		AbstractUserDetailsAuthenticationProvider {
+AbstractUserDetailsAuthenticationProvider {
 	@NonNull
 	UserAuthenticationService auth;
 
 	@Override
 	protected void additionalAuthenticationChecks(UserDetails userDetails,
-			UsernamePasswordAuthenticationToken authentificationToken)
+			UsernamePasswordAuthenticationToken authenticationToken)
 			throws AuthenticationException {
 		// Nothing to do
-
+		logger.info( 
+			String.format("additionalAuthenticationChecks requested on %s details with %s authentication", 
+					userDetails, authenticationToken) );
 	}
 
 	@Override

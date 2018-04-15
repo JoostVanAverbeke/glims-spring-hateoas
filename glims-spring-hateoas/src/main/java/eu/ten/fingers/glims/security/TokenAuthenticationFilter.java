@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import lombok.experimental.FieldDefaults;
 
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
-import eu.ten.fingers.glims.repositories.exceptions.BadCredentialsException;
 import static com.google.common.net.HttpHeaders.AUTHORIZATION;
 import static java.util.Optional.ofNullable;
 import static lombok.AccessLevel.PRIVATE;
