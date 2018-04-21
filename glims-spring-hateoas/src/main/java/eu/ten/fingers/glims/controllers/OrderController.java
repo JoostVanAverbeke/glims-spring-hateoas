@@ -15,7 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import eu.ten.fingers.glims.models.Order;
 import eu.ten.fingers.glims.repositories.OrderRepository;
-import eu.ten.fingers.glims.repositories.exceptions.OrderNotFoundException;
+import eu.ten.fingers.glims.repositories.exceptions.ResourceNotFoundException;
 import eu.ten.fingers.glims.resources.OrderResource;
 
 @RestController
@@ -46,7 +46,7 @@ public class OrderController {
 		if (order != null) {
 			return ResponseEntity.ok(new OrderResource(order));
 		} else {
-			throw(new OrderNotFoundException(id));	
+			throw(new ResourceNotFoundException(id));	
 		}
     }
 	

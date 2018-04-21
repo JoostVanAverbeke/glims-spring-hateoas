@@ -26,17 +26,20 @@ public class OrderResource extends ResourceSupport {
 	}
 	
 	public String getInternalId() {
-		return this.order.getInternalId();
+		return order.getInternalId();
 	}
 
 	public String getShortId() {
-		return this.order.getShortId();
+		return order.getShortId();
 	}
 	
 //	https://static.javadoc.io/com.fasterxml.jackson.core/jackson-databind/2.8.5/com/fasterxml/jackson/databind/ser/std/CalendarSerializer.html
 	public String getReceiptTime() {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		return dateFormat.format(this.order.getReceiptTime().getTime());
+		if (order.getReceiptTime() != null) {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			return dateFormat.format(this.order.getReceiptTime().getTime());
+		}
+		return null;	
 	}
 
 }

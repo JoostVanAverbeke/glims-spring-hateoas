@@ -53,6 +53,11 @@
 		    <groupId>org.projectlombok</groupId>
 		    <artifactId>lombok</artifactId>
 	    </dependency>
+	    <dependency>
+			<groupId>org.apache.commons</groupId>
+  			<artifactId>commons-lang3</artifactId>
+  			<version>3.1</version>	    
+	    </dependency>
 	    <!-- To enabling Swagger we will use the Springfox implementation of the Swagger specification.
 	         This requires the following maven dependency
 	     -->

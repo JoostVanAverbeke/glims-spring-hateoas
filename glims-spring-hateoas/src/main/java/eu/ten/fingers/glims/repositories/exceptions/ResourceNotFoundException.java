@@ -3,13 +3,13 @@ package eu.ten.fingers.glims.repositories.exceptions;
 import lombok.Getter;
 
 @Getter
-public class OrderNotFoundException extends RuntimeException {
+public class ResourceNotFoundException extends RuntimeException {
 	
 	private static final long serialVersionUID = 1L;
 	private final Long id;
 
-	  public OrderNotFoundException(long id) {
-		super("Order could not be found with id: " + id);
+	  public ResourceNotFoundException(long id) {
+		super("Resource could not be found with id: " + id);
 	    this.id = id;
 	  }
 
